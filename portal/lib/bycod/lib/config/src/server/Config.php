@@ -11,7 +11,6 @@
  * @license: GPL v3
  *
  */
-
 class Config
 {
 	protected $drivers;
@@ -30,25 +29,26 @@ class Config
 		return $this->load($key, "config");
 	}
 
-	public function load($path='', $file="config", $type=0, $force=true){
-		$data = $this->data($path, $file, $type, $force);
-		return $this->import($data['data'], $data['path']);		
+	public function load($path='', $file="config", $type=0, $force=true, $analyzer=null){
+		$data = $this->data($path, $file, $type, $force, $analyzer);
+		//print_r($data);
+		return $this->import($data['data'], $data['path'], $analyzer);		
 	}
 
-	public function import($data, $path){
+	public function import($data, $path, $analyzer=null){
 		if(isset($data["import"])){
 			$import = $data["import"];
 			unset ($data["import"]);
 			if(!is_array($import)) { 
-				$data = $this->require($path, $import, $data);
+				$data = $this->require($path, $import, $data, $analyzer);
 			}else foreach($import as $file) 
-				$data = $this->require($path, $file, $data);
+				$data = $this->require($path, $file, $data, $analyzer);
 		}return $data;
 	}
 
-	public function require($path, $file, $data){
+	public function require($path, $file, $data, $analyzer=null){
 		if(!empty($file)){
-			$import = $this->load($path, $file);
+			$import = $this->load($path, $file, 0, true, $analyzer);
 			if(is_array($import)){
 				$data = array_merge_recursive ($import, $data);
 			}				
@@ -57,11 +57,11 @@ class Config
 	}
 	
 	public function save($data=0, $path=0, $file="config", $type=0, $force=0){
-		$dr = $this->driver($type, $path, $file, $force);
+		$dr = $this->data($type, $path, $file, $force);
 		$dr->save($data, "$path$file.$type");
 	}
 
-	protected function data($path='', $file="config", $type=0, $force=0)
+	protected function data($path='', $file="config", $type=0, $force=0, $analyzer=null)
 	{
 		if(is_file($path)){
 			$tmp = pathinfo($path);
@@ -78,7 +78,7 @@ class Config
 			$dr = $this->getDriver($type, $force);
 			return $dr ? array(
 				"path"=> $path,
-				"data"=>$dr->load($file, $force)
+				"data"=>$dr->load($file, $force, $analyzer)
 			)  : false;
 		}
 			

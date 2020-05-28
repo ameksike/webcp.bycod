@@ -14,7 +14,7 @@
         "log":"log/",
         "driver":"sqlite",
         "name":"storage",
-        "path":"D:\\bin\\xampp-7030\\htdocs\\dev\\webcp.simple\\portal.bycod\\data/db/",
+        "path":"__DIR__/data/db/",
         "extension":"db"
     },
     "media":{

@@ -37,7 +37,15 @@ class Bycod
     }
 
 
-
+    public function onConfigPerform($data, $type){
+        if($type=="json"){
+            $path = $this->cfg['bycod']['router']['path'];
+            //print_r($path);
+            //print_r(str_ireplace("__DIR__", $path, $data));
+            return str_ireplace("__DIR__", 'D:\\bin\\xampp-7030\\htdocs\\dev\\webcp.bycod\\portal', $data);
+        }
+        return $data;
+    }
 
     public function whoCallme($deep=2, $elm="class")
     {   //... elm: [file|line|function|class|object|type|args|all]
@@ -59,11 +67,12 @@ class Bycod
 
     public function config($path="bycod"){
  /* */
-        $file = $this->get("config")->load($path);
-        $file  = $file ? $file : $this->get("config")->load("$path/cfg/");
+
+        $file = $this->get("config")->load($path, $file="config", 0, true, $this);
+        $file  = $file ? $file : $this->get("config")->load("$path/cfg/", $file="config", 0, true, $this);
         $path = $this->route($path);
-        $file  = $file ? $file : $this->get("config")->load("$path/cfg/");
-        $file  = $file ? $file : $this->get("config")->load("$path/../../cfg/");
+        $file  = $file ? $file : $this->get("config")->load("$path/cfg/", $file="config", 0, true, $this);
+        $file  = $file ? $file : $this->get("config")->load("$path/../../cfg/", $file="config", 0, true, $this);
 
         return $file;
 

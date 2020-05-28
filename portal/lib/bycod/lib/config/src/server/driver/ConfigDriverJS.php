@@ -20,13 +20,15 @@ class ConfigDriverJS extends ConfigDriver
 		parent::__construct($path); 
 		$this->fileConf = 0;
 	}
-	public function load($path=0, $force=0)
+	
+	public function load($path=0, $force=0, $analyzer=null)
 	{
 		$path = $path ? $path : $this->file;
 		if(!$this->fileConf || $force) $this->fileConf = file_get_contents($path);
 		$this->fileConf = json_decode($this->fileConf, true);
 		return $this->fileConf;
 	}
+
 	public function save($data=0, $path=0)
 	{
 		$path = $path ? $path : $this->file;

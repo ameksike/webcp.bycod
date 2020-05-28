@@ -22,7 +22,7 @@ class ConfigDriverXML extends ConfigDriver
 		$this->fileConf = 0;
 	}
 	//...........................................................
-	public function load($path=0, $force=0)
+	public function load($path=0, $force=0, $analyzer=null)
 	{
 		$path = $path ? $path : $this->file;
 		if(!$this->fileConf || $force) $this->fileConf = file_get_contents($path);		
