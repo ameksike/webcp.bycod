@@ -1,0 +1,11 @@
+{
+    "name": "Engine",
+    "version": "0.1",
+    "package": "engine",
+    "authors": ["ing. Antonio Membrides Espinosa"],
+    "made": "15/06/2012",
+    "update": "15/06/2012",
+    "license": "GPL v3",
+    "description": "This is simple and light framework engine",
+    "require": ["php >=5.2", "event >=0.1"]
+}

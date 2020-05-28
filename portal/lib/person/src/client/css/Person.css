@@ -1,0 +1,38 @@
+
+input {
+    border: 2px ridge;
+    color: black;
+    margin-left: 2px;
+    margin-right: 3px;
+    margin-top: 1px;
+}
+
+.dataTables_length{
+    margin-left: 3px;
+}
+
+.dataTables_info {
+    margin-left: 3px;
+}
+
+td img {
+	vertical-align: middle;
+    width: 95%;
+}
+
+div.container {
+    width: 50% !important;
+}
+
+td.details-control {
+    background: url('../../../../theme/src/client/tpl/debug/img/icos/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../../../../theme/src/client/tpl/debug/img/icos/details_close.png') no-repeat center center;
+}
+
+.profilea {
+    vertical-align: middle;
+    width: 100%;
+}

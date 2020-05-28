@@ -1,0 +1,30 @@
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4><b>Ejemplo 2:</b> Plantillas din&aacute;micas</h4>
+    </div>
+    <div class="panel-body">
+
+        <pre class="brush: php;">
+            &lt;?php
+                echo \$assist->view->js('jquery/jquery', 'vendor');
+                echo \$assist->view->js('bootstrap/bootstrap.min', 'vendor');
+                echo \$assist->view->css('bootstrap/bootstrap.min', 'vendor');
+                echo \$assist->view->css('bootstrap/bootstrap-theme.min', 'vendor');
+                \$mtd = \$assist->metadata->{\$module};
+            ?&gt;
+            <div style="margin:0 0 10 0%;">
+                <h4 style="transform: rotate(-90deg);  -webkit-transform: rotate(-90deg); display: inline;">Bycod.</h4>
+                <h3 style="display: inline; text-shadow: 2px 2px 4px rgb(45, 47, 45);">&lt;?php echo \$mtd["name"]; ?&gt;</h3>
+            </div>
+            <div class="alert alert-success">
+                &lt;?php
+                    foreach(\$mtd as \$index=>\$value){
+                        \$value = is_array(\$value) ? implode(", ", \$value) : \$value;
+                        echo "<span align='justify' style='display: block;'> <b>@{\$index}:</b> <span> {\$value} </span> </span>";
+                    }
+                ?&gt;
+            </div>
+        </pre>
+
+    </div>
+</div>

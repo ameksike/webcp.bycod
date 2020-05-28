@@ -1,0 +1,17 @@
+#!/usr/bin/php
+<?php
+    /*
+     *
+     * @framework: Bycod
+     * @package: cli
+     * @version: 0.1
+     * @description: This is simple and Light CLI single frontal access under CLI
+     * @authors: ing. Antonio Membrides Espinosa
+     * @mail: tonykssa@gmail.com
+     * @made: 23/4/2011
+     * @update: 23/4/2011
+     * @license: GPL v3
+     * @require: PHP >= 5.2.*
+     *
+     */
+    include 'index.php';

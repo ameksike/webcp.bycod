@@ -1,0 +1,10 @@
+{
+	"guest":{
+		"main": true,
+		"porter":{
+			"dologin":true,
+			"login":true
+		}
+	},
+	"admin":true
+}

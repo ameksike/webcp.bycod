@@ -1,0 +1,14 @@
+<div id="viewhelp" style="margin-left: 1%; margin-right: 1%">
+    {$assist->view->js('syntaxhighlighter/shCore', 'vendor')}
+    {$assist->view->js('syntaxhighlighter/shBrushJScript', 'vendor')}
+    {$assist->view->js('syntaxhighlighter/shBrushXml', 'vendor')}
+    {$assist->view->js('syntaxhighlighter/shBrushPhp', 'vendor')}
+    {$assist->view->css('syntaxhighlighter/shCoreDefault', 'vendor')}
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+
+    {$assist->view->compile('vendor:header')}
+    <div style="clear:both" id="contenido">
+        ...
+    </div>
+</div>

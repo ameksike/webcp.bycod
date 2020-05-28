@@ -1,0 +1,21 @@
+
+body .featured-news {
+    width: 153px;
+    background: #34363e;
+    position: absolute;
+    top: 15px;
+    left: -40px;
+    text-align: center;
+    line-height: 35px;
+    letter-spacing: 0.01em;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+body .portfolio-item{
+    overflow: hidden;
+}

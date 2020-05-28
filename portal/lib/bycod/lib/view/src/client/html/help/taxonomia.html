@@ -1,0 +1,65 @@
+<!-- script para la definición  de arboles -->
+{$assist->view->include(array('vendor/lib/jstree/js/jstree.min.js', 'vendor/lib/jstree/themes/default/style.css'))}
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4>Taxonom&iacute;a de las plantillas</h4>
+    </div>
+    <div class="panel-body">
+        <div id="taxanomia"></div>
+        <p align="justify">
+            ...
+        </p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#taxanomia').jstree({
+        "core" : {
+            "opened": true,
+            "animation" : 0,
+            "check_callback" : true,
+            "themes" : { "stripes" : true },
+            'data' : [{
+                "text" : "component",
+                "type" : "root",
+                "icon": "glyphicon glyphicon-folder-open",
+                "state" : {
+                    opened    : true,  // is the node open
+                    disabled  : true,  // is the node disabled
+                    selected  : true  // is the node selected
+                },children:[
+                    { text:"mtd",
+                        "icon": "glyphicon glyphicon-folder-open"}, {text:"log",
+                        "icon": "glyphicon glyphicon-folder-open"}, {
+                        text:"src",
+                        "icon": "glyphicon glyphicon-folder-open",
+                        "state" : { opened: true },
+                        "children" : [{
+                            "text" : "client",
+                            "icon": "glyphicon glyphicon-folder-open",
+                            "state" : { opened: true },
+                            "children" : [ {text:"js",
+                                "icon": "glyphicon glyphicon-folder-open"}, {text:"css",
+                                "icon": "glyphicon glyphicon-folder-open"},
+                                {
+                                    "text" : "html",
+                                    "icon": "glyphicon glyphicon-folder-open",
+                                    "state" : { opened: true, selected: true },
+                                    "children" : [{ text: "help.html", icon:"glyphicon glyphicon-file"}, {text:"index.html", icon:"glyphicon glyphicon-file"}]
+                                },{
+                                    "text" : "tpl",
+                                    "icon": "glyphicon glyphicon-folder-open",
+                                    "state" : { opened: true, selected: true },
+                                    "children" : [{ text: "header.php", icon:"glyphicon glyphicon-file"}, {text:"footer.php", icon:"glyphicon glyphicon-file"}]
+                                }
+                            ]
+                        },{ text: "server",
+                            "icon": "glyphicon glyphicon-folder-open"}
+                        ]
+                    }
+                ]
+            }]
+        }
+    });
+</script>

@@ -1,0 +1,17 @@
+.news_img{
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+body .new_title{
+    font-size: 241%; 
+    margin-bottom: 4.917px;
+    font-weight: bold;
+}
+
+body .new_writeby{
+    margin-left: -1px;
+    margin-bottom: -2.033px;
+    margin-top: 0px;
+}

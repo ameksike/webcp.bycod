@@ -1,0 +1,32 @@
+<p align="justify"> La biblioteca denominada <b>View</b> se responsabiliza de incorporar al <em>framework</em> <b>Bycod</b> soporte para el renderizado de vistas a partir de plantillas, de una forma simple y elegante.
+    Depende directamente de la biblioteca <b>Notary</b> en su versi&oacute;n 1.0, y requiere el int&eacute;rprete del lenguaje PHP en su versi&oacute;n 5.2 o superior.
+    Esta incorpora un conjunto de recursos en aras de facilitar el proceso de construcci&oacute;n de vistas, como es el caso de la generaci&oacute;n autom&aacute;tica de las etiquetas de tipo <em>script</em> o <em>link</em>,
+    as&iacute; como la inclusi&oacute;n de plantillas precompiladas. Para mayor comprensi&oacute;n obs&eacute;rvese la definici&oacute;n de la interfaz que ofrece la mencionada biblioteca y que se muestra a continuaci&oacute;n. </p>
+
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4>Interfaz de la biblioteca</h4>
+    </div>
+    <div class="panel-body">
+       <pre class="brush: php;">
+            class View
+            {
+                public function render(\$view=":", \$data){}
+                public function compile(\$view=":", \$data){}
+
+                public function js(\$js="main", \$module){}
+                public function css(\$css="main", \$module){}
+
+                public function script(\$js="main", \$module){}
+                public function link(\$css="main", \$module){ }
+
+                public function url(\$name=false, \$mod){}
+            }
+        </pre>
+
+        <p align="justify">N&oacute;tese como se ofrece dos formas distintas para la generaci&oacute;n de las etiquetas <em> script </em> o <em>link</em>, las cuales permiten incorporar al documento HTML, fragmentos de c&oacute;digo <em>JavaScript</em> y <em>CSS</em> respectivamente.
+            De esta forma se deja a decisi&oacute;n del desarrollador qu&eacute; funci&oacute;n le resulta m&aacute;s c&oacute;moda utilizar, pues <em>js</em> y <em>script</em> se comportan de la misma forma, al igual que <em>css</em> y <em>link</em>.</p>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4><b>Ejemplo 1:</b> Plantillas est&aacute;ticas</h4>
+    </div>
+    <div class="panel-body">
+
+        <pre class="brush: xml;">
+                    <body>
+                    {\$bycod->view->js()}
+                    {\$assist->view->js('bootstrap', 'vendor')}
+                    <!-- script para el resaltado de sintaxis -->
+                    {\$assist->view->include(array(
+                        'vendor/src/client/js/syntaxhighlighter/shCore.js',
+                        'vendor/src/client/js/syntaxhighlighter/shBrushJScript.js',
+                        'vendor/src/client/js/syntaxhighlighter/shBrushXml.js',
+                        'vendor/src/client/js/syntaxhighlighter/shBrushPhp.js',
+                        'vendor/src/client/css/syntaxhighlighter/shCoreDefault.css'
+                    ))}
+                    <!--renderizado de la plantilla header-->
+                    {\$assist->view->compile(':header')}
+
+                    <div class="page-header label-info"></div>
+
+                    <div  class="index">
+                        <div class="col-md-6">
+                            <img  src="{\$assist->view->url()}src/client/img/2.png" />
+                            <!--img  src="{$assist->view->url('/img/1.png')}" /-->
+                            <h2>Sistema de Administración</h2>
+                            El presente sistema est&aacute; encaminado a facilitar el proceso de gesti&oacute;n y administraci&oacute;n de reservas.
+                        </div>
+                    </div>
+
+                    <!--renderizado de plantillas -->
+                    <div> {\$assist->view->compile(array(
+                            ':help/interface',
+                            ':help/taxonomia',
+                            ':help/statictpl',
+                            ':help/dynamic'
+                        ))}
+                    </div>
+
+                    <!--otra forma de incluir archivos css y js-->
+                    {\$assist->view->script('main')}
+                    {\$assist->view->link('main')}
+                    </body>
+                </pre>
+
+        <p align="justify">N&oacute;tese como en las l&iacute;neas 22 y 21 del ejemplo 1 se renderiza el contenido de la plantilla footer alojada en el directorio html del m&oacute;dulo en ejecuci&oacute;n, sin embargo la plantilla count, que se encuentra almacenada en el directorio <em>html/my/</em></p>
+
+   </div>
+</div>

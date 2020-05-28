@@ -1,0 +1,17 @@
+{
+  "author": {
+    "name": "Antonio Membrides Espinosa"
+  },
+  "dev_dependencies": {
+	"php": "^5.3.27",
+    "libphp5-ftp": "^5.3.27"
+  },
+  "description": "Light client for manage FTP Server.",
+  "main": "src/server/Main.php",
+  "license": "GPL",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ameksike/ksike-lcftp.git"
+  }
+}

@@ -1,0 +1,38 @@
+{
+    "import": "bycod",
+    "idiom":"en",
+    "mail":{
+        "host":"srq-cc.com",
+        "username":"reservastucita",
+        "password":"010414",
+        "phone":"+53 52124535",
+        "from":"admin.red@cfg.labiofam.cu",
+        "fromname":"Administrador",
+        "driver":"mail"
+    },
+    "db":{
+        "log":"log/",
+        "driver":"sqlite",
+        "name":"storage",
+        "path":"D:\\bin\\xampp-7030\\htdocs\\dev\\webcp.simple\\portal.bycod\\data/db/",
+        "extension":"db"
+    },
+    "media":{
+        "url":"http://videoteca.cfg.labiofam.cu/emby/",
+        "imp":["informatica/nube/Cuntos_megas_de_Internet_necesito","labiofam/20190513-Consejo"],
+        "tips":{
+            "total":114
+        }
+    },
+    "company":{
+        "field":"p.role",
+        "role":"user",
+        "phone":"+53 52124535",
+        "email":"admin.red@cfg.labiofam.cu"
+    },
+    "ftp":{
+        "server":"ftp.cfg.labiofam.cu",
+        "deep":"5",
+        "match":"all"
+    }
+}

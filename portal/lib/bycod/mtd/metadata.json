@@ -1,0 +1,12 @@
+{
+    "name": "Bycod",
+    "version": "0.1",
+    "package": "bycod",
+    "authors": ["ing. Antonio Membrides Espinosa"],
+    "email": "tonykssa@gmail.com",
+    "created": "15/06/2012",
+    "updated": "15/06/2012",
+    "license": "GPL v3",
+    "description": "This is simple and light framework for web develop aplication",
+    "require": ["php >= 5.2"]
+}
