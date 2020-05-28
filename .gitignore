@@ -1,0 +1,11 @@
+*/.svn/*
+*.svn
+*~*
+svn
+*.o
+*~
+resource/*
+portal/log/*
+portal/server/log/*
+portal.bycod/log/*
+portal/lib/news/resource/article/*
