@@ -9,6 +9,10 @@
                 "action":"select",
                 "params":[],
                 "idiom":"en"
+            },
+            "action":{
+
+
             }
         },
         "router":{

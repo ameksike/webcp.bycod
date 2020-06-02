@@ -24,7 +24,7 @@ class InDriverLIST extends InDriver
             case "pretty": 
                 $request['option'] = $this->tool->fillOptions(
                     $request['option'], 
-                    $this->tool->argPretty($delimiter), 
+                    $this->tool->argPretty($delimiter),
                     $keys
                 ); 
                 $request['option'] = array_merge($this->tool->argHtml($delimiter), $request['option']);

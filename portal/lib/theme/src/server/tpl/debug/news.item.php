@@ -24,9 +24,9 @@
             </div>
             
             <div class="portfolio-hover">
-                <a class="portfolio-zoom" href="<?php echo $assist->view->url("news/view/".$data['item']['id']); ?>"><i class="fa fa-search"></i></a>
-                <a class="portfolio-link" href="<?php echo $assist->view->url("news/view/".$data['item']['id']); ?>"><i class="fa fa-pencil"></i></a>
-                <a class="portfolio-trash" href="<?php echo $assist->view->url("news/view/".$data['item']['id']); ?>"><i class="fa fa-trash"></i></a>
+                <a class="portfolio-zoom" href="<?php echo $assist->view->url("$idiomId/news/view/".$data['item']['id']); ?>"><i class="fa fa-search"></i></a>
+                <!-- a class="portfolio-link" href="<?php echo $assist->view->url("$idiomId/news/view/".$data['item']['id']); ?>"><i class="fa fa-pencil"></i></a -->
+                <!-- a class="portfolio-trash" href="<?php echo $assist->view->url("$idiomId/news/view/".$data['item']['id']); ?>"><i class="fa fa-trash"></i></a -->
             </div>
         </div>
         <!-- End portfolio-head -->

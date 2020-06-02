@@ -48,10 +48,9 @@
                     <hr style="padding-bottom: -4px;">
                     <p><?php 
                         $des = $data['item']['description']; 
-
                         $des = str_ireplace('resource/', $assist->view->urlModule('news') . "/resource/", $des);
                         echo $des;                     
-                    ?> </p>
+                    ?></p>
                 </div>
         </section>
 

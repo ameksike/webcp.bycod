@@ -25,12 +25,11 @@
                             <h4><?php echo $idiom["news"]['title']; ?></h4>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;">
-                        <?php echo $idiom["main"]['title']; ?><span class="sep"> / 
-                        </span><span class="current"><?php echo $idiom["news"]['title']; ?></span></div>
+                            <?php echo $idiom["main"]['title']; ?><span class="sep"> / 
+                            </span><span class="current"><?php echo $idiom["news"]['title']; ?></span></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             </div>
         </section>
 
@@ -54,13 +53,13 @@
                             if(isset($list[$i+1])) echo $assist->view->compile('theme:debug/news.item', array( 'item'=>$list[$i+1]) );
                             if(isset($list[$i+2])) echo $assist->view->compile('theme:debug/news.item', array( 'item'=>$list[$i+2]) );
                         }
-                        
                     ?>
                 </div>
+                <?php echo $assist->view->compile('theme:debug/pagination'); ?>
                 <div class="row">
                     <span><?php echo $data['offset']; ?></span> - <span><?php echo $data['offset']+$data['limit']-1; ?></span>  / <span> <?php echo $data['total'] ?>  </span>
                 </div>
-  
+            </div>
         </section>
 
         <?php echo $assist->view->compile('theme:debug/index.footer'); ?>

@@ -54,7 +54,7 @@ var newEditor = function(selector, height){
 
 
 newEditor('#sumary', 200);
-newEditor('#description', 400);
+newEditor('#description', 800);
 // 
 ImgLoader.init("imgico", "imgicoF", Bycod.router.action("news/upload"),"imgicoS");
 ImgLoader.init("imgfront", "imgfrontF", Bycod.router.action("news/upload"),"imgfrontS");

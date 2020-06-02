@@ -31,7 +31,7 @@ class Config
 
 	public function load($path='', $file="config", $type=0, $force=true, $analyzer=null){
 		$data = $this->data($path, $file, $type, $force, $analyzer);
-		//print_r($data);
+		if(!isset($data['data'])) return '';
 		return $this->import($data['data'], $data['path'], $analyzer);		
 	}
 
@@ -40,13 +40,13 @@ class Config
 			$import = $data["import"];
 			unset ($data["import"]);
 			if(!is_array($import)) { 
-				$data = $this->require($path, $import, $data, $analyzer);
+				$data = $this->requires($path, $import, $data, $analyzer);
 			}else foreach($import as $file) 
-				$data = $this->require($path, $file, $data, $analyzer);
+				$data = $this->requires($path, $file, $data, $analyzer);
 		}return $data;
 	}
 
-	public function require($path, $file, $data, $analyzer=null){
+	public function requires($path, $file, $data, $analyzer=null){
 		if(!empty($file)){
 			$import = $this->load($path, $file, 0, true, $analyzer);
 			if(is_array($import)){
@@ -70,7 +70,7 @@ class Config
 		}else{
 			if(!$type) {
 				$type = $this->searchExt("$path/$file"); 
-				$type = $type["type"];
+				$type = isset($type["type"]) ? $type["type"] : null;
 			}
 			$file = "$path/$file.$type";
 		}
