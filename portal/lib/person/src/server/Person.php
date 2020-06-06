@@ -160,8 +160,11 @@ class Person
         $url = $this->assist->router->url(".");   
         $path =  $this->assist->router->path();
 
-        $person['avatar'] =  "/data/user/".strtolower($person['company'])."/". strtolower($person['user']) . ".jpg";
-        if(!file_exists($path . $person['avatar'])){
+        $this->assist->log($url);
+        $this->assist->log($path);
+
+        $person['avatar'] =  "data/user/".strtolower($person['company'])."/". strtolower($person['user']) . ".jpg";
+        if(!file_exists($path .  '/' . $person['avatar'])){
             $person['avatar'] = $url. "data/user/user_".$person['sex'].".svg";
         }
         else{

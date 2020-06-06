@@ -1,4 +1,5 @@
 <?php $idiom = $assist->view->idiom("theme"); ?>
+<button id="btnAdd">btnAdd</button>
 <table id="newsList" class="display" cellspacing="1" width="100%">
     <thead>
         <tr>
