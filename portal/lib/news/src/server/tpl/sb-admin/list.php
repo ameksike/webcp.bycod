@@ -1,19 +1,20 @@
-<table id="person" class="display" cellspacing="1" width="100%">
+<?php $idiom = $assist->view->idiom("theme"); ?>
+<table id="newsList" class="display" cellspacing="1" width="100%">
     <thead>
         <tr>
-            <th>Fecha</th>
-            <th>T&iacute;tulo</th>
-            <th>Sumario</th>
-            <th>Aciones</th>
+            <th><?php  if(isset($idiom['news']['list']['date'])) echo $idiom['news']['list']['date']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['title'])) echo $idiom['news']['list']['title']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['sumary'])) echo $idiom['news']['list']['sumary']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['actions'])) echo $idiom['news']['list']['actions']; ?></th>
         </tr>
     </thead>
 
     <tfoot>
         <tr>
-            <th>Fecha</th>
-            <th>T&iacute;tulo</th>
-            <th>Sumario</th>
-            <th>Aciones</th>
+            <th><?php  if(isset($idiom['news']['list']['date'])) echo $idiom['news']['list']['date']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['title'])) echo $idiom['news']['list']['title']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['sumary'])) echo $idiom['news']['list']['sumary']; ?></th>
+            <th><?php  if(isset($idiom['news']['list']['actions'])) echo $idiom['news']['list']['actions']; ?></th>
         </tr>
     </tfoot>
 

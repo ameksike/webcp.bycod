@@ -1,6 +1,8 @@
 
+var datatable = null;
 $(document).ready(function() {
-        var dt = $('.display').dataTable({
+
+        datatable = $('.display').dataTable({
             "processing": true,
             "serverSide": true,
             "ajax": {
@@ -33,30 +35,17 @@ $(document).ready(function() {
                 { "data": "sumary", minWidth: 150, maxWidth: 400 },
 				{ "data": null, minWidth: 20, maxWidth: 20 }
             ],
-            "language": lan,
-            buttons: [ { text: 'Reload table', action: function () { dt.ajax.reload(); } } ],
-            "initComplete": function(settings, json) {
-               // alert( 'DataTables has finished its initialisation.' );
-               // this.column(3).visible(false);
-            }
+            "language": lan
         });
 
-        $('.display thead').on( 'click', 'th', function () {
-            // ... do something with `columnData`
-        } );
-
-        var table = $('.display').DataTable();
-        table.column(3).visible(true);
-        
-        $('a.toggle-opt').on( 'click', function (e) {
+         $('#dbSearchBtn').on( 'click', function (e) {
             e.preventDefault();
-            var column = table.column( $(this).attr('data-column') );
-            column.visible( ! column.visible() );
-            if(column.visible()){
-                $('a.toggle-add').show("fast");
+            let data = $('#dbSearchInput').val();
+            if(data == ""){
+                datatable.fnFilterClear();
             }else{
-                $('a.toggle-add').hide("fast");
+                datatable.fnFilter(data);
             }
-        });
+        } );
         
 } );

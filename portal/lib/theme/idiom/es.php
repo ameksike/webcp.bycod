@@ -52,7 +52,10 @@ $idiom['news']['form']['cover'] = 'Portada';
 $idiom['news']['form']['sumary'] = 'Preámbulo';
 $idiom['news']['form']['description'] = 'Descripción extendida';
 $idiom['news']['form']['btn'] = 'Salvar';
-
+$idiom['news']['list']['date'] = 'Fecha';
+$idiom['news']['list']['title'] = 'T&iacute;tulo';
+$idiom['news']['list']['sumary'] = 'Sumario';
+$idiom['news']['list']['actions'] = 'Aciones';
 
 $idiom['docs']['admin']['subtitle'] = 'Articulos';
 $idiom['docs']['admin']['title'] = 'Documentos';
@@ -127,7 +130,6 @@ $idiom['dashboard']['conditions']['title'] = 'Panel de Administración';
 $idiom['dashboard']['conditions']['subtitle'] = 'Terminos y Condiciones';
 $idiom['dashboard']['privacy']['title'] = 'Panel de Administración';
 $idiom['dashboard']['privacy']['subtitle'] = 'Privacidad';
-
 $idiom['dashboard']['menu'][0]['title'] = "Inicio";
 $idiom['dashboard']['menu'][0]['menu'][0]['title']  = 'Tablero';
 $idiom['dashboard']['menu'][0]['menu'][1]['title']  = 'Portal';
@@ -142,7 +144,6 @@ $idiom['dashboard']['menu'][3]['title'] = "Herramientas";
 $idiom['dashboard']['menu'][3]['menu'][0]['title'] = "Configuración";
 $idiom['dashboard']['menu'][3]['menu'][1]['title'] = "Modulos";
 $idiom['dashboard']['menu'][3]['menu'][2]['title'] = "Diseño";
-
 $idiom['dashboard']['menu'][3]['menu'][5]['title'] = "Empresa";
 $idiom['dashboard']['menu'][3]['menu'][5]['menu'][0]['title'] = "Vinacon";
 $idiom['dashboard']['menu'][3]['menu'][5]['menu'][1]['title'] = "Contratos";
