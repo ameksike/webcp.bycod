@@ -25,37 +25,53 @@ class NewsModel
     public function get($request=false, $normal=false){
 
         //$id = !$request ? '' :  isset($request['id']) ? $request['id'] : $request['param'] ;
-        $id = !$request ? '' :  isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
+        //$id = !$request ? '' :  isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
 
         $limit = !$request ? '' :  isset($request['limit']) ? $request['limit'] : 9;
         $offset = !$request ? '' :  isset($request['offset']) ? $request['offset'] : 0;
+        $filter = null;
+        
+        if(isset($request['search']['value'])){
+            $filter = LQL::create()
+            ->addWhere('a.title', '%'. $request['search']['value'] .'%', 'like')
+            ->orWhere('a.sumary', '%'. $request['search']['value'] .'%', 'like')
+            ->orWhere('a.description', '%'. $request['search']['value'] .'%', 'like')
+            ->orWhere('a.author', '%'. $request['search']['value'] .'%', 'like');
+        } 
         
         $qm = LQL::create($this->config['db'])
             ->from('article', 'a')
             ->orderBy('a.date', 'DESC')
         ;
+
         if(!empty($id)){
-            $qm  = $qm->where("id", $id);
+            $qm = $qm->where("id", $id);
+            $qm =  $filter ? $qm->andWhere($filter) : $qm ;
+            
         }else if($normal){
             $qm  = $qm->where('a.status', 'normal');
+            $qm =  $filter ? $qm->andWhere($filter) : $qm ;
+        }else{
+            $qm =  $filter ? $qm->where($filter) : $qm ;
         }
-        
+
         $qm  = $qm->limit($limit)->offset($offset);
 
         $out = $qm->select('*')->execute();
         $out = !$out ? array() : $out;
-        $total = empty($id) ? $this->total() : 1;
+        $total = empty($id) ? $this->total($filter) : 1;
 
         return array('total'=>$total, 'data'=>$out, 'limit'=>$limit, 'offset'=>$offset  );
     }
 
     public function relevant(){
-        
         $rel = LQL::create($this->config['db'])->select('*')->from('article', 'a')->where('a.status', 'relevant')->orderBy('a.date', 'DESC')->limit(2)->execute();
         return $rel;
     }
-    public function total(){
-        $total = LQL::create($this->config['db'])->select('count(id) as total')->from('article', 'a')->execute();
+    public function total($filter=null){
+        $qm = LQL::create($this->config['db'])->select('count(id) as total')->from('article', 'a');
+        $qm =  $filter ? $qm->where($filter) : $qm ;
+        $total =  $qm ->execute();
         return $total[0]['total'];
     }
     public function save($request){

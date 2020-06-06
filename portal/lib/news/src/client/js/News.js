@@ -41,11 +41,6 @@ $(document).ready(function() {
          $('#dbSearchBtn').on( 'click', function (e) {
             e.preventDefault();
             let data = $('#dbSearchInput').val();
-            if(data == ""){
-                datatable.fnFilterClear();
-            }else{
-                datatable.fnFilter(data);
-            }
+            datatable.fnFilter(data);
         } );
-        
 } );

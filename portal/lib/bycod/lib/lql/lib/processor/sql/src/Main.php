@@ -17,7 +17,7 @@ class Main extends \Ksike\lql\src\server\Processor
 				array('select', 'addSelect', 'delete', 'update', 'insert', 'drop', 'alter', 'create'),
                 array('from', 'set', 'ownerTo'),
 				array("leftJoin", "innerJoin", "rightJoin"),
-				array("where", "andWhere", "orWhere", "addWhereIn", "whereIn"),
+				array("where", "addWhere", "andWhere", "orWhere", "whereIn"),
 				array("groupBy", "having", "orderBy", "limit", "offset")
 		);
 	}
@@ -82,11 +82,10 @@ class Main extends \Ksike\lql\src\server\Processor
 				$alias = is_a($value[0], 'Ksike\lql\src\server\Main') ? " AS $name " : (is_string($value[1]) ? " AS $name " : '');
 				return ", ".$this->evaluate($value[0]).$alias; 
 			break;
-			case "ANDWHERE": 
-			case "ADDWHERE": return " AND ". $this->compare($value); break;
-			case "ORWHERE": return " OR ". $this->compare($value); break;
-			case "DELETE": return " DELETE FROM ". $this->evaluate($value[0]); break;
 			case "WHERE": return " WHERE ". $this->compare($value); break;
+			case "ADDWHERE": return $this->compare($value); break;
+			case "ANDWHERE": return " AND ". $this->compare($value); break;
+			case "ORWHERE": return " OR ". $this->compare($value); break;
 			case "ANDWHEREIN": 
                 $list = '';
                 foreach($value[1] as $i){
@@ -103,6 +102,7 @@ class Main extends \Ksike\lql\src\server\Processor
                 }
                 return " WHERE ". $this->evaluate($value[0])  . ' IN (' . $list . ' )';
             break;
+			case "DELETE": return " DELETE FROM ". $this->evaluate($value[0]); break;
 			case "DROP": 	return " DROP TABLE ".$this->evaluate($value[0]); break;
 			case "ALTER": 	return " ALTER TABLE ".$this->evaluate($value[0]); break;
 			case "OWNERTO": return " OWNER TO ".$this->evaluate($value[0]); break;

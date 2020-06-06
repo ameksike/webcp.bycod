@@ -78,8 +78,11 @@ class News
     }
 
     public function get($request=false, $normal=false){
+
         if(isset($request['length'])) $request['limit'] = $request['length'];
         if(isset($request['start'])) $request['offset'] = $request['start'];
+        $request['id'] = isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
+
         $this->view = '';
         $this->model = new NewsModel($this->assist->cfg);
         $data = $this->model->get($request, $normal);
