@@ -1,10 +1,16 @@
+var table = null;
 $(document).ready(function() {
-        var table = $('.display').DataTable({
+
+        table = $('.display').DataTable({
             "scrollX": true,
+            "processing": true,
             "serverSide": true,
             "pagingType": "full_numbers",
-            "ajax": Bycod.router.action("person/list"),
-            "stateSave": true,   
+            "stateSave": true,
+            "ajax": {
+                "url": Bycod.router.action("person/list"),
+                "type": "POST"
+            }, 
             "columnDefs": [
                 {
                     "render": function ( data, type, row ) {
@@ -49,7 +55,16 @@ $(document).ready(function() {
             ],
             "language": lan
         });
-
+        
+        $('#dbSearchBtn').on( 'click', function (e) {
+            e.preventDefault();
+            let data = $('#dbSearchInput').val();
+            if(table['fnFilter']){
+                table.fnFilter(data);
+            }else{
+               table.search(data).draw();
+            }            
+        });
 
         $('#person tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
@@ -77,7 +92,6 @@ $(document).ready(function() {
             var objp = row.data();
             $( "#dialog" ).empty();
             $( "#dialog" ).append('<img width="100%" src="' + objp['avatar'] + '">');
-            // ( "#dialog" ).replaceWith('<div id="dialog" title="Foto">' +'<img width="100%" src="' + objp['avatar'] + '">'+'</div>');
             $( "#dialog" ).dialog();
         } );
 } );

@@ -34,7 +34,7 @@ class Main extends Driver
             $this->connect();
             $out = false;
             if($this->selected($sql) ){
-                    $stmt = $this->dbm->prepare($sql);
+                    $stmt = @$this->dbm->prepare($sql);
                     $out = $stmt->execute();
                     $out = $this->extract($out);
             }else{

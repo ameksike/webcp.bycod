@@ -17,15 +17,29 @@ class PersonModel
     public function __construct($cfg){
         $this->config = $cfg;
     }
-    
-    public function list($request){
-        LQL::setting($this->config['db']);
 
-        $total = LQL::create()
-            ->select('count(id) as total')
-            ->from('person', 'p')
-            ->where($this->config['company']['field'], $this->config['company']['role'])
-            ->execute();
+    public function getFilter($request, $prefix){
+        $filter = LQL::create();
+        $init = 0;
+        if(!isset($request['search']['value']) || !isset($request['columns']) ) return null;
+        foreach($request['columns'] as $i){
+            $i['data'] = $i['data']=="avatar" ? "img" : $i['data'];
+            if($i['searchable'] && !empty($i['data']) ){
+                if($init++ == 0){
+                    $filter = $filter->addWhere($prefix. $i['data'], '%'. $request['search']['value'] .'%', 'like');
+                }else{
+                    $filter = $filter->orWhere($prefix. $i['data'], '%'. $request['search']['value'] .'%', 'like');
+                }
+               
+            }
+        }
+        return $filter;
+    }
+    public function list($request){
+        
+        $filter = $this->getFilter($request, "p.");
+        
+        LQL::setting($this->config['db']);
 
         $qm = LQL::create()
             ->select('*')
@@ -33,13 +47,14 @@ class PersonModel
             ->where($this->config['company']['field'], $this->config['company']['role'])
         ;
 
+        $qm =  $filter ? $qm->andWhere($filter) : $qm ;
         $limit = !$request ? '' :  isset($request['limit']) ? $request['limit'] : 10;
         $offset = !$request ? '' :  isset($request['offset']) ? $request['offset'] : 0;
         $qm  = $qm->limit($limit)->offset($offset);
         $out = $qm->execute();
 
         $out = !$out ? array() : $out;
-        return array("data"=> $out, "total"=>$this->total(), 'limit'=>$limit, 'offset'=>$offset );
+        return array("data"=> $out, "total"=>$this->total($filter), 'limit'=>$limit, 'offset'=>$offset );
     }
 
     public function save($request){
@@ -49,12 +64,14 @@ class PersonModel
         */
     }
 
-    public function total(){
-        $total = LQL::create()
+    public function total($filter=null){
+        $qm =  LQL::create()
             ->select('count(id) as total')
             ->from('person', 'p')
             ->where($this->config['company']['field'], $this->config['company']['role'])
-            ->execute();
+        ;
+        $qm = $filter ? $qm->andWhere($filter) : $qm ;
+        $total = $qm ->execute();
         return $total[0]['total'];
     }
     public function get($request){

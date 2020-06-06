@@ -122,6 +122,7 @@ class Person
         if($request['length']) $request['limit'] = $request['length'];
         if($request['start']) $request['offset'] = $request['start'];
         $this->view = '';
+       // print_r($request); die;
         $this->model = new PersonModel($this->assist->cfg);
         $out = $this->model->list($request);
         $out = $this->formatList($out);

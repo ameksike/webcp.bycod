@@ -38,9 +38,9 @@ $(document).ready(function() {
             "language": lan
         });
 
-         $('#dbSearchBtn').on( 'click', function (e) {
+        $('#dbSearchBtn').on( 'click', function (e) {
             e.preventDefault();
             let data = $('#dbSearchInput').val();
             datatable.fnFilter(data);
-        } );
+        });
 } );
