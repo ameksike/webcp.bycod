@@ -37,8 +37,6 @@ class PersonModel
     }
     public function list($request){
         
-        $filter = $this->getFilter($request, "p.");
-        
         LQL::setting($this->config['db']);
 
         $qm = LQL::create()
@@ -46,8 +44,9 @@ class PersonModel
             ->from('person', 'p')
             ->where($this->config['company']['field'], $this->config['company']['role'])
         ;
-
+        $filter = $this->getFilter($request, "p.");
         $qm =  $filter ? $qm->andWhere($filter) : $qm ;
+
         $limit = !$request ? '' :  isset($request['limit']) ? $request['limit'] : 10;
         $offset = !$request ? '' :  isset($request['offset']) ? $request['offset'] : 0;
         $qm  = $qm->limit($limit)->offset($offset);
@@ -74,6 +73,7 @@ class PersonModel
         $total = $qm ->execute();
         return $total[0]['total'];
     }
+
     public function get($request){
         $id = isset($request['id']) ? $request['id'] : '' ;
 

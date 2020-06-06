@@ -10,7 +10,10 @@ $(document).ready(function() {
             "scrollX": true,
             "serverSide": true,
             "pagingType": "full_numbers",
-            "ajax":  Bycod.router.action("phone/list"), 
+            "ajax":  {
+                "url": Bycod.router.action("phone/list"), 
+                "method": "POST"
+            },
             stateSave: true,
             "columnDefs": [
                 {
@@ -47,5 +50,17 @@ $(document).ready(function() {
                 { "data": "type" }
             ],
             "language": lan
+        });
+
+                
+        $('#dbSearchBtn').on( 'click', function (e) {
+            e.preventDefault();
+            let data = $('#dbSearchInput').val();
+            let table = $('#phonebook').dataTable();
+            if(table['fnFilter']){
+                table.fnFilter(data);
+            }else{
+               table.search(data).draw();
+            }            
         });
 } );

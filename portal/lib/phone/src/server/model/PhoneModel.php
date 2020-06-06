@@ -20,6 +20,23 @@ class PhoneModel
         $this->table = 'phonebook';
     }
     
+    public function getFilter($request, $prefix){
+        $filter = LQL::create();
+        $init = 0;
+        if(!isset($request['search']['value']) || !isset($request['columns']) ) return null;
+        foreach($request['columns'] as $i){
+            $i['data'] = $i['data']=="ico" ? "" : $i['data'];
+            if($i['searchable'] && !empty($i['data']) ){
+                if($init++ == 0){
+                    $filter = $filter->addWhere($prefix. $i['data'], '%'. $request['search']['value'] .'%', 'like');
+                }else{
+                    $filter = $filter->orWhere($prefix. $i['data'], '%'. $request['search']['value'] .'%', 'like');
+                }
+               
+            }
+        }
+        return $filter;
+    }
 
     public function select($request){
         $id = !$request ? '' :  isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
@@ -31,20 +48,25 @@ class PhoneModel
             ->from($this->table, 'p')
         ;
 
+        $filter = $this->getFilter($request, "p.");
+        $qm =  $filter ? $qm->where($filter) : $qm ;
+
         $qm  = $qm->limit($limit)->offset($offset);
         $out = $qm->execute();
         $out = !$out ? array() : $out;
 
-        return array("data"=> $out, "total"=>$this->total(), 'limit'=>$limit, 'offset'=>$offset );
+        return array("data"=> $out, "total"=>$this->total($filter), 'limit'=>$limit, 'offset'=>$offset );
 
         return $out;
     }
 
-    public function total(){
-        $total = LQL::create($this->config['db'])
+    public function total($filter=null){
+        $qm =  LQL::create($this->config['db'])
             ->select('count(id) as total')
             ->from($this->table, 'p')
-            ->execute();
+        ;
+        $qm = $filter ? $qm->where($filter) : $qm ;
+        $total = $qm ->execute();
         return $total[0]['total'];
     }
 
