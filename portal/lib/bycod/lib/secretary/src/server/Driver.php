@@ -16,9 +16,11 @@ abstract class Driver
 	public $log;
 	protected $records;
 	protected $connection;
+	protected $debug;
 
 	public function __construct($config=false){
 		$this->log  = 'log/';
+		$this->debug = 'none';
 		$this->setting($config);
 		$this->records = array();
 		$this->connection = null;

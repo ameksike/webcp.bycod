@@ -34,27 +34,24 @@ class Main extends Driver
             $this->connect();
             $out = false;
             if($this->selected($sql) ){
-            
                     $stmt = $this->dbm->prepare($sql);
                     $out = $stmt->execute();
                     $out = $this->extract($out);
-                
             }else{
                 $out = @$this->dbm->exec($sql);
-                if(!$out) echo " ERROR: ". $this->dbm->lastErrorCode()." -->> ". $this->dbm->lastErrorMsg()." in: $sql <br>";
+                if(!$out) echo "SQLITE ERROR: ". $this->dbm->lastErrorCode()." -->> ". $this->dbm->lastErrorMsg()." in: $sql <br>";
+            }
+            if($this->debug == 'vervose'){
+                $this->log('SQLITE SQL: ' . $sql);
             }
             if (!$out) {
-                $this->log('ERROR: ' . $this->dbm->lastErrorMsg());
                 return false;
             }
             $this->records[] = $sql;
             $this->disconnect();
         }
         catch(\Error $error){
-            echo $sql;
-            echo "<pre>";
-            print($error);
-            echo "</pre>";
+			$this->log('SQLITE ERROR: '.$error . '  -- FROM -->>  '. $sql);  
         }
 		return $out;
     }

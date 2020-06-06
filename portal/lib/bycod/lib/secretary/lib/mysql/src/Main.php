@@ -29,6 +29,9 @@ class Main extends Driver
 
 	public function query($sql){
 		if(!$this->connect()) return false;
+		if($this->debug == 'vervose'){
+			$this->log('SQLITE SQL: ' . $sql);
+		}
 		$out = @mysql_query($sql);	
 		if(!$out) {
 			$this->log('ERROR: '. mysql_error($this->connection)); 

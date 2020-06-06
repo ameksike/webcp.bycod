@@ -11,11 +11,12 @@
 	$config["mail"]["fromname"]	= "Administrador";				//... alias o sobre nombre para el que emite el correo
 	$config["mail"]["driver"]	= "mail";
 
-    $config['db']["log"]		= "log/";
+    $config['db']["log"]		= __DIR__ . "/../log/";
     $config['db']["driver"]	 	= "sqlite";					        //... valores admitidos: pgsql|mysql|mysqli|sqlite|sqlsrv
     $config['db']["name"]		= "storage";		              	//... nombre de la base de datos a la cual debe conectarse  
     $config['db']["path"]		= __DIR__ . "/../data/db/";	  		//... ruta donde se encuentra la base de datos
-    $config['db']["extension"]  = "db";						        //... default value db
+    $config['db']["extension"]  = "db";		
+    $config['db']["debug"]      = "vervose";						//... default value db
 
     $config['media']['url'] = "http://videoteca.cfg.labiofam.cu/emby/";
     $config['media']['imp'][] = "informatica/nube/Cuntos_megas_de_Internet_necesito";
