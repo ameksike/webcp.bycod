@@ -24,7 +24,7 @@ class NewsModel
 
     public function get($request=false, $normal=false){
 
-        //$id = !$request ? '' :  isset($request['id']) ? $request['id'] : $request['param'] ;
+        $id = !$request ? '' :  isset($request['id']) ? $request['id'] : '' ;
         //$id = !$request ? '' :  isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
 
         $limit = !$request ? '' :  isset($request['limit']) ? $request['limit'] : 9;

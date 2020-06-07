@@ -177,9 +177,12 @@ class News
     }
 
     public function view($request){
+        $request['id'] = isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
         $this->view = 'theme:debug/news.view';        
         $this->model = new NewsModel($this->assist->cfg);
         $items = $this->model->get($request);
+        
+        $this->assist->log($items);
 
         return array(
             "active"=>"news",

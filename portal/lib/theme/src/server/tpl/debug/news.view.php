@@ -34,10 +34,9 @@
             <div class="container">
                 <div class="row">
                     <img class="news_img" src="<?php 
-                        $imgico = !empty($data['item']['imgico']) ? 'lib/news/'.$data['item']['imgico'] : "lib/theme/src/client/tpl/debug/img/1.jpg";
+                        $imgico = !empty($data['item']['imgico']) ? $data['item']['imgico'] : "lib/theme/src/client/tpl/debug/img/1.jpg";
                         echo $assist->view->url($imgico);
                         ?>"  width="50%"></a>	
-
 				    <h1 class="theme_color new_title"> <?php echo $data['item']['title']; ?> </a> </h1>
 				    <hr>
                     <h5 class="new_writeby " > 

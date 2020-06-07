@@ -18,9 +18,15 @@ class Router
 			$this->burl = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/')+1);
 		}
 		public function url($access=false, $header=false, $footer=false){
+			if (preg_match('/http|https|ftp/i', $access)) {
+				return $access;
+			}
 			$access = $access ? $access : $this->assist->cfg['bycod']['request']['option']['controller'];
 			$action = $this->urlAccessType($access);
-			return $this->{$action}($access, $header, $footer);
+			$url = $this->{$action}($access, $header, $footer);
+			$url = str_ireplace('//', '/', $url);
+			$url = str_ireplace(':/', '://', $url);
+			return $url;
 		}
 		protected function urlHeader(){
 			$protocol = explode("/", $_SERVER["SERVER_PROTOCOL"]);
