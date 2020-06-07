@@ -23,13 +23,13 @@ var newEditor = function(selector, height){
 		],
 		toolbar: " insertfile a11ycheck undo redo | bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | link image myin",
 		
-		images_upload_url : 'news/upload',
+		images_upload_url : Bycod.router.action("news/upload"),
 		automatic_uploads : false,
 		images_upload_handler : function(blobInfo, success, failure) {
 			var xhr, formData;
 			xhr = new XMLHttpRequest();
 			xhr.withCredentials = false;
-			xhr.open('POST', 'news/upload');
+			xhr.open('POST', Bycod.router.action("news/upload"));
 			xhr.onload = function() {
 				var json;
 				if (xhr.status != 200) {
@@ -48,13 +48,25 @@ var newEditor = function(selector, height){
 			xhr.send(formData);
 		}
 	});
-	
 }
+$('#btnSave').on( 'click', (event) => {
+	event.preventDefault(); // avoid to execute the actual submit of the form.	
 
+	var form = $("#frmNews");
+	$.ajax({
+		"type": form.attr("method"),
+		"url": form.attr('action'),
+		"data": form.serialize(), // serializes the form's elements.
+		"success": function(data)
+		{
+			alert(data); // show response from the php script.
+		}
+	});	
+});
 
-
+//.............................................................................. 
 newEditor('#sumary', 200);
 newEditor('#description', 800);
-// 
+//.............................................................................. 
 ImgLoader.init("imgico", "imgicoF", Bycod.router.action("news/upload"),"imgicoS");
 ImgLoader.init("imgfront", "imgfrontF", Bycod.router.action("news/upload"),"imgfrontS");

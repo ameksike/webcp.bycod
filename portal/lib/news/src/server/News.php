@@ -33,9 +33,30 @@ class News
     }
 
     public function delete($request){
+        $request['id'] = isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
         $this->model = new NewsModel($this->assist->cfg);
         $this->model->delete($request);
         return $this->backend();
+    }
+
+    public function save($request){
+        
+        $article = array(
+            'title' => $request['title'], 
+            'sumary' => $request['sumary'],  
+            'description' => $request['description'],  
+            'date' => date('now'), 
+            'author' => $request['author'], 
+            'imgico' => $request['imgico'], 
+            'imgfront' => $request['imgfront'],  
+            'url' => $request['url'],  
+            'status' => $request['status'], 
+        );
+        $article['id'] = isset($request['id']) ? $request['id'] : ((isset($request['params'][0])) ? $request['params'][0]: '') ;
+
+        $this->model = new NewsModel($this->assist->cfg);
+        $this->model->save($article);
+        //return $this->backend();
     }
 
     public function fixUrl($data){
@@ -46,6 +67,36 @@ class News
         $data["description"] = str_ireplace("resource/article/", $this->assist->router->urlModule("news") . "resource/article/" , $data["description"]);
         return $data;
     }
+
+    
+    public function add($request){
+        $idiom = $this->assist->view->idiom("theme"); 
+        $this->view = 'theme:sb-admin/blank';
+
+        $this->model = new NewsModel($this->assist->cfg);
+        $data = $this->model->empty();
+
+        return array(
+            "active"=>"portfolio",
+            "page_title_ico"=>  "fas fa-newspaper",
+            "page_head" => $this->assist->view->include(array(
+                "news/src/client/css/Edit.css",
+            )),
+            "page_footer"=> $this->assist->view->include(array(
+                "theme/idiom/es.js",
+                "theme/src/client/js/utils.js",
+                "theme/lib/img/imgloader.js",
+                "theme/lib/tinymce/jquery.tinymce.min.js",
+                "theme/lib/tinymce/tinymce.min.js",
+                "news/src/client/js/Edit.js",
+                "news/src/client/js/Edit.js",
+            )),
+            "page_title"=>  $idiom['news']['admin']['title'],
+            "page_subtitle"=> $idiom['news']['admin']['subtitle'] . ' / ' .  $idiom['news']['admin']['title'] . ' / ' .  $idiom['news']['list']['action']['add'],
+            "page_body"=> $this->assist->view->compile('news:sb-admin/form', ['model'=>$data] )
+        );
+    }
+
 
     public function edit($request){
         $idiom = $this->assist->view->idiom("theme"); 

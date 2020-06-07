@@ -74,11 +74,7 @@ class NewsModel
         $total =  $qm ->execute();
         return $total[0]['total'];
     }
-    public function save($request){
-        $id = isset($request['id']) ? $request['id'] : $request['param'] ;
-        $obj = $request;
-        unset($obj['btnSafe'], $obj['art'], $obj['type']);
-
+    public function save($obj){
         if($obj['id']!='') {
             $qm = LQL::create($this->config['db'])
                 ->update('article')
@@ -99,7 +95,7 @@ class NewsModel
     }
     
     public function delete($request){
-        $id = isset($request['id']) ? $request['id'] : $request['param'] ;
+        $id = isset($request['id']) ? $request['id'] : '' ;
         
         if(!empty($id)) {
             $qm = LQL::create($this->config['db'])
@@ -119,6 +115,7 @@ class NewsModel
             'status'=> true,
             'imgico'=> '',
             'imgfront'=> '',
+            'url'=> '',
             'sumary'=> '',
             'description'=> ''
         ];

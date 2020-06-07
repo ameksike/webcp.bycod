@@ -2,7 +2,7 @@
     $config = include dirname(__FILE__).'/bycod.php';   //... separar la configuracin del framework
 
     
-    $config['idiom']            = 'en';
+    $config['idiom']            = 'es';
 	$config["mail"]["host"]		= "srq-cc.com"; 		//... servidor o proveedor de correo
 	$config["mail"]["username"]	= "reservastucita";		//... campo de usuario de una cuenta activa en el servidor de correo
 	$config["mail"]["password"]	= "010414";				

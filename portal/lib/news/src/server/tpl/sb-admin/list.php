@@ -1,5 +1,5 @@
 <?php $idiom = $assist->view->idiom("theme"); ?>
-<button id="btnAdd">btnAdd</button>
+<a id="btnAdd"  href="<?php echo $assist->view->url("$idiomId/news/add"); ?>" class="btn btn-primary">btnAdd</a>
 <table id="newsList" class="display" cellspacing="1" width="100%">
     <thead>
         <tr>
